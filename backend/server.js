@@ -17,35 +17,35 @@ const port = process.env.PORT || 4000;
 app.use(express.json())
 
 
-// app.use(cors())
+app.use(cors())
 
-// app.use(cors({ origin: 
-//     'http://localhost:5174' 
+app.use(cors({ origin: 
+    "https://fish-delivary-frontend.vercel.app"
 
-//  }));
+ }));
 
 
   // "https://food-delivery-website-gamma.vercel.app",
     // "https://food-delivery-website-admin.vercel.app",
 
-const allowedOrigins = [
-    "https://fish-delivary-frontend.vercel.app",
+// const allowedOrigins = [
+//     "https://fish-delivary-frontend.vercel.app",
     
-    "http://localhost:5174",
+//     "http://localhost:5174",
 
-];
+// ];
 
-app.use(cors({
-    origin: function (origin, callback) {
-        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-            callback(null, true);
-        } else {
-            callback(new Error("Not allowed by CORS"));
-        }
-    },
-    methods: ["POST", "GET", "PUT", "DELETE"],
-    credentials: true
-}));
+// app.use(cors({
+//     origin: function (origin, callback) {
+//         if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+//             callback(null, true);
+//         } else {
+//             callback(new Error("Not allowed by CORS"));
+//         }
+//     },
+//     methods: ["POST", "GET", "PUT", "DELETE"],
+//     credentials: true
+// }));
 
 
 
