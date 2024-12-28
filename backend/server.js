@@ -9,29 +9,59 @@ import orderRouter from "./routes/orderRoute.js"
 
 // app config
 const app = express()
-const port =  4000;
+const port = process.env.PORT || 4000;
 
 
 
 // middlewares
 app.use(express.json())
 
+
+// app.use(cors())
+
+// app.use(cors({ origin: 
+//     'http://localhost:5174' 
+
+//  }));
+
+
+  // "https://food-delivery-website-gamma.vercel.app",
+    // "https://food-delivery-website-admin.vercel.app",
+
 const allowedOrigins = [
-    "https://food-delivery-website-gamma.vercel.app",
-    "https://food-delivery-website-admin.vercel.app"
+    "http://localhost:5173",
+    "http://localhost:5174",
+
 ];
 
+// app.use(cors({
+//     origin: function (origin, callback) {
+//         if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+//             callback(null, true);
+//         } else {
+//             callback(new Error("Not allowed by CORS"));
+//         }
+//     },
+//     methods: ["POST", "GET", "PUT", "DELETE"],
+//     credentials: true
+// }));
+
+
+
 app.use(cors({
-    origin: function (origin, callback) {
-        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-            callback(null, true);
+    origin: (origin, callback) => {
+        if (allowedOrigins.includes(origin) || !origin) {
+            callback(null, true); // Allow the origin
         } else {
-            callback(new Error("Not allowed by CORS"));
+            callback(new Error('Not allowed by CORS')); // Reject the origin
         }
     },
-    methods: ["POST", "GET", "PUT", "DELETE"],
-    credentials: true
+    credentials: true // Optional: If you need to handle cookies
 }));
+
+
+
+
 
 // db connection
 connectDB()
