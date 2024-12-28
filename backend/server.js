@@ -29,35 +29,36 @@ app.use(express.json())
     // "https://food-delivery-website-admin.vercel.app",
 
 const allowedOrigins = [
-    "http://localhost:5173",
+    "https://fish-delivary-frontend.vercel.app",
+    
     "http://localhost:5174",
 
 ];
 
-// app.use(cors({
-//     origin: function (origin, callback) {
-//         if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-//             callback(null, true);
-//         } else {
-//             callback(new Error("Not allowed by CORS"));
-//         }
-//     },
-//     methods: ["POST", "GET", "PUT", "DELETE"],
-//     credentials: true
-// }));
-
-
-
 app.use(cors({
-    origin: (origin, callback) => {
-        if (allowedOrigins.includes(origin) || !origin) {
-            callback(null, true); // Allow the origin
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true);
         } else {
-            callback(new Error('Not allowed by CORS')); // Reject the origin
+            callback(new Error("Not allowed by CORS"));
         }
     },
-    credentials: true // Optional: If you need to handle cookies
+    methods: ["POST", "GET", "PUT", "DELETE"],
+    credentials: true
 }));
+
+
+
+// app.use(cors({
+//     origin: (origin, callback) => {
+//         if (allowedOrigins.includes(origin) || !origin) {
+//             callback(null, true); // Allow the origin
+//         } else {
+//             callback(new Error('Not allowed by CORS')); // Reject the origin
+//         }
+//     },
+//     credentials: true // Optional: If you need to handle cookies
+// }));
 
 
 

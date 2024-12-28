@@ -6,7 +6,10 @@ export const StoreContext = createContext(null);
 const StoreContextProvider = (props) => {
 
     // const url = "https://food-delivery-website-v9oh.onrender.com"
-    const url = "http://localhost:4000"
+    // const url = "http://localhost:4000"
+    const url = "https://fish-delivary-backend.vercel.app"
+
+
     const [food_list, setFoodList] = useState([]);
     const [cartItems, setCartItems] = useState({});
     const [token, setToken] = useState("")
